@@ -1,7 +1,20 @@
 ## Coursera, R Programming Course, July, 2020
+## Testing:
+## Open a R terminal
+## > m <- matrix(1:12, nrow = 2, ncol = 2)
+## > mc <- makeCacheMatrix(m)
+## > cacheSolve(mc)
 
-## This function is like a class it has the get and set classic fuctions
-## that allow set and get the value of matrix
+## To see cache in action run again:
+## > cacheSolve(mc)
+
+
+## This function creates a new, unique environment. 
+# The inverse matrix is cached inside the object m, in the main 
+# environment, which is unique for EACH instance the function is called.
+## The output of the function is a list with 5 named elements, which are 
+# the five functions defined in here: setmatrix, getmatrix, setinverse, 
+# getinverse and getenv
 
 ## Arguments: 
 ## x = The matrix which inverse to be calculated
@@ -12,7 +25,7 @@ makeCacheMatrix <- function(x = matrix()) {
     x <<- y
     m <<- NULL
   }
-  get <- function() x
+  get <- function() x ## Get the value of the matrix
   setinverse <- function(inverse) m <<- inverse
   getinverse <- function() m
   list(set = set, get = get,
@@ -40,3 +53,4 @@ cacheSolve <- function(x, ...) {
   m ## return "solved" matrix
   
 }
+
