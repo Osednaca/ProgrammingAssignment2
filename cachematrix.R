@@ -1,8 +1,10 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Coursera, R Programming Course, July, 2020
 
 ## This function is like a class it has the get and set classic fuctions
 ## that allow set and get the value of matrix
+
+## Arguments: 
+## x = The matrix which inverse to be calculated
 
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
@@ -15,24 +17,26 @@ makeCacheMatrix <- function(x = matrix()) {
   getinverse <- function() m
   list(set = set, get = get,
        setinverse = setinverse,
-       getinverse = getinverse)
+       getinverse = getinverse) ##return special object
 }
 
-## This function solve the inverse of the matrix given, if the matrix has already 
-## solve it show a message and show the result without calculate again, because 
-## is in cache
+## This function use the R solve function to find the inverse of the matrix given, 
+## if the matrix is already  in cache it show a message and show the result 
+## without calculate again.
 
+## Arguments:
+## x = the special object returned by makeCacheMatrix function
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'  
   m <- x$getinverse()
-  if(!is.null(m)) {
+  if(!is.null(m)) { ## If not null show message to the user and return the cached matrix
     message("getting cached data")
     return(m)
   }
   data <- x$get()
-  m <- solve(data, ...)
-  x$setinverse(m)
-  m
+  m <- solve(data, ...) ## Using the R solve function to find the inverse of the matrix
+  x$setinverse(m) ## caching the solution
+  m ## return "solved" matrix
   
 }
